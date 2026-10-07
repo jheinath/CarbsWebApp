@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A daily carbohydrate planner for cyclists.">
+  <title>Cyclist Carbohydrate Planner</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <p class="eyebrow">Endurance fuel / daily plan</p>
+        <h1>Carbs for the miles ahead.</h1>
+      </div>
+      <p class="intro">Use the same calculation as the console app, with editable inputs and food alternatives for every meal.</p>
+    </header>
+
+    <div class="layout">
+      <form class="panel" id="planner-form">
+        <h2>Your inputs</h2>
+        <label>Height <span>centimetres</span><input name="heightCm" type="number" min="1" step="1" required></label>
+        <label>Weight <span>kilograms</span><input name="weightKg" type="number" min="1" step="0.1" required></label>
+        <label>Hours on bike <span>planned duration</span><input name="hoursOnBike" type="number" min="0" step="0.1" required></label>
+        <label>Average power <span>watts; used for day classification</span><input name="averagePowerWatts" type="number" min="0" step="1" required></label>
+        <label>FTP <span>functional threshold power, watts</span><input name="ftpWatts" type="number" min="1" step="1" required></label>
+        <label>Carb intake during ride <span>grams per hour</span><input name="carbohydratesPerBikeHour" type="number" min="0" step="1" required></label>
+        <label>Other food carbs <span>per day</span><input name="carbohydratesFromOtherFoodsPerDay" type="number" min="0" step="1" required></label>
+        <button type="submit">Calculate my plan</button>
+      </form>
+
+      <section class="results" id="calculation-results" aria-live="polite">
+        <div class="hero">
+          <div>
+            <h2>Daily carbohydrate target</h2>
+            <div class="big"><span id="total-carbs">0</span> <small>g carbs</small></div>
+            <p><span id="carbs-per-kg">0.0</span> g per kg body weight</p><p id="training-day"></p>
+          </div>
+          <div class="stats">
+            <div class="stat"><b><span id="base-carbs">0</span> g</b><span>target range</span></div>
+            <div class="stat"><b><span id="cycling-carbs">0</span> g</b><span>carbs during ride</span></div>
+            <div class="stat"><b><span id="listed-carbs">0</span> g</b><span>listed foods</span></div>
+            <div class="stat"><b><span id="daily-total">0</span> g</b><span>total daily carbs</span></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Meal carbohydrate budgets</h2>
+          <p class="sub">Budgets for the listed foods. Your <span id="other-carbs">0</span> g from other foods is already deducted.</p>
+          <table><thead><tr><th>Meal</th><th>Carbohydrates</th></tr></thead><tbody id="meal-table"></tbody></table>
+        </div>
+
+        <div class="card">
+          <h2>Choose your sources</h2>
+          <p class="sub">Each amount would provide the full meal budget from one source. Mix foods as you like.</p>
+          <div class="meal-grid" id="meal-cards"></div>
+        </div>
+
+        <p class="note">Typical nutrition estimates, not medical advice. Use package labels when available.</p>
+        <button type="button" id="copy-results">Copy results</button>
+        <p class="copy-message" id="copy-message" role="status"></p>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
